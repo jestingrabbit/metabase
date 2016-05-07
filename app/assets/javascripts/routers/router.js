@@ -10,10 +10,10 @@ app.AppRouter = Backbone.Router.extend({
   entrance: function () {
     if (!app.currentUser) {
       $.get('/login').done( function (data) {
-        if (data) {
-          app.session = data;
+        app.session = data;
+        if (data.user) {
           app.currentUser = new app.User(data.user);
-          app.router.navigate('databases', {trigger: true}); //current user is a simple hash
+          app.router.navigate('databases', {trigger: true});
         } else {
           delete app.currentUser;
           app.router.navigate('loginOrSignUp', {trigger: true});
