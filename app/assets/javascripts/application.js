@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap.js
 //= require lodash.js
 //= require backbone.js
 //= require_tree ./models

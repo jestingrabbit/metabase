@@ -1,0 +1,36 @@
+<div id="main"></div>
+
+<div id="front"></div>
+
+<script type="text/template" id="makeCurrentUserTemplate">
+  <div id="signup">
+
+    <h1 class="text-center form-heading">New User?</h1>
+
+    <form class="new_user">
+      <fieldset>
+        <label for="user_name">Username</label>
+        <input required="required" class="form-control name" type="text">
+      </fieldset>
+      <fieldset>
+        <label for="user_email">Email</label>
+        <input required="required" class="form-control email" type="email">
+      </fieldset>
+      <fieldset>
+        <label for="user_password">Password</label>
+        <input required="required" class="form-control password" type="password">
+      </fieldset>
+      <fieldset>
+        <label for="user_password_confirmation">Password confirmation</label>
+        <input required="required" class="form-control passwordConfirmation" type="password">
+      </fieldset>
+      <div class="btn-wrapper">
+        <input type="button" value="Sign Up" class="btn btn-primary btn-lg" id="signUpButton">
+      </div>
+    </form>
+  </div>
+  or
+  <div id="login">
+
+  </div>
+</script>

@@ -14,8 +14,10 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
+      render :json => @user
+    else
+      render :json => @user, :status => :unprocessable_entity
     end
-    render :json => @user # if there are problems, there'll be an error on the user, and we'll use that to determine next action.
   end
 
   def update

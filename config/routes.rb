@@ -14,12 +14,13 @@
 
 Rails.application.routes.draw do
 
-  root :to => 'pages#splash'
+  root :to => 'pages#home'
   get '/faq' => 'pages#faq'
 
   resources :users, :only => [:create, :update, :show, :destroy]
 
   post '/login' => 'session#create'
+  get '/login' => 'session#show'
   delete '/login' => 'session#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
