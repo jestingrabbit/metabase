@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+                      # ApplicationController
   before_filter :login_check, :only => [:update, :destroy]
 
   def show
@@ -14,9 +14,10 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
+      session[:user] = @user
       render :json => @user
     else
-      render :json => @user, :status => :unprocessable_entity
+      render :json => @user.errors, :status => :unprocessable_entity
     end
   end
 

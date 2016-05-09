@@ -4,15 +4,20 @@ class SessionController < ApplicationController
     identifier = params[:identifier]
     @user = User.find_by(:name => identifier) || User.find_by(:email => identifier)
     if @user.present? && @user.authenticate(params[:password])
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       render :json => @user
     else
-      render :json => false
+      session[:user_id] = nil
+      render :json => nil, :status => :unprocessable_entity
     end
   end
 
   def show
-    render :json => session
+    if @current_user.present?
+      render :json => { :session => session, :user => @current_user }
+    else
+      render :json => nil
+    end
   end
 
   def destroy

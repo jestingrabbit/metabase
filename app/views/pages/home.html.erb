@@ -1,36 +1,110 @@
-<div id="main"></div>
+<div id="main" class="container-fluid">
 
-<div id="front"></div>
+  <nav></nav>
+
+  <div id="front" class="row">
+  </div>
+
+</div>
+
+<script type="text/template" id="navTemplate">
+  <a href="">
+    <div class="nav-button" id="home">mb</div>
+  </a>
+
+  <a href="/faq">
+    <div class="nav-button" id="faq">faq</div>
+  </a>
+
+  <%% if (currentUser) { %>
+    <%% if (place !== 'databaseList') { %>
+      <div class="nav-button" id="databaseList">mb</div>
+    <%% } %>
+    <%= link_to '/login', method: "delete" do %>
+      <div class="nav-button">logout</div>
+    <% end %>
+  <%% } %>
+
+
+</script>
+
+
+<!-- probably not needed, nor indeed the right thing. -->
+<script type="text/template" id="authenticity_token"><%= form_authenticity_token %></script>
 
 <script type="text/template" id="makeCurrentUserTemplate">
-  <div id="signup">
+  <div id="signup" class="side-form col-xs-3 col-xs-offset-2">
 
-    <h1 class="text-center form-heading">New User?</h1>
+    <h1 class="text-center form-heading">New User</h1>
 
     <form class="new_user">
-      <fieldset>
-        <label for="user_name">Username</label>
-        <input required="required" class="form-control name" type="text">
+      <div class="top-message"><small>All fields are required.</small></div>
+      <fieldset class="name">
+        <label>Username</label>
+        <input required="required" class="form-control" type="text">
+        <div class="message"></div>
       </fieldset>
-      <fieldset>
-        <label for="user_email">Email</label>
-        <input required="required" class="form-control email" type="email">
+      <fieldset class="email">
+        <label>Email</label>
+        <input required="required" class="form-control" type="email">
+        <div class="message"></div>
       </fieldset>
-      <fieldset>
-        <label for="user_password">Password</label>
-        <input required="required" class="form-control password" type="password">
+      <fieldset class="password">
+        <label>Password</label>
+        <input required="required" class="form-control" type="password">
+        <div class="message"></div>
       </fieldset>
-      <fieldset>
-        <label for="user_password_confirmation">Password confirmation</label>
-        <input required="required" class="form-control passwordConfirmation" type="password">
+      <fieldset class="password_confirmation">
+        <label>Password confirmation</label>
+        <input required="required" class="form-control" type="password">
+        <div class="message"></div>
       </fieldset>
       <div class="btn-wrapper">
         <input type="button" value="Sign Up" class="btn btn-primary btn-lg" id="signUpButton">
       </div>
     </form>
   </div>
-  or
-  <div id="login">
+  <div id="or" class="col-xs-2"><h1>or</h1></div>
+  <div id="login" class="side-form col-xs-3">
+    <h1 class="text-center form-heading">Returning</h1>
+    <form class="returning">
+      <div class="top-message"></div>
+      <fieldset class="identifier">
+        <label>Username or Email</label>
+        <input required="required" class="form-control" type="text">
+      </fieldset>
+      <fieldset class="password">
+        <label>Password</label>
+        <input required="required" class="form-control" type="password">
+      </fieldset>
+      <div class="btn-wrapper">
+        <input type="button" value="Login" class="btn btn-primary btn-lg" id="loginButton">
+      </div>
+    </form>
+  </div>
+</script>
 
+<script type="text/template" id="databaseListFrameTemplate">
+  <h1 class="text-center">Your Databases</h1>
+  <div class="databaseList">
+  </div>
+  <form class="new_database">
+    <fieldset>
+      <label>Database Name</label>
+      <input required="required" class="form-control" type="text">
+    </fieldset>
+    <div class="btn-wrapper">
+      <input type="button" value="Sign Up" class="btn btn-primary btn-lg" id="loginButton">
+    </div>
+  </form>
+</script>
+
+<script type="text/template" id="databaseListFrameTemplate">
+  <div class="row">
+    <div class="dbName"><h3><%%= name %></h3></div>
+    <div class="controls">
+
+
+    </div>
   </div>
 </script>

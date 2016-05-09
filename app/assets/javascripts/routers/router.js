@@ -7,12 +7,15 @@ app.AppRouter = Backbone.Router.extend({
     'databases' : 'showDatabases'
   },
 
+  initialize: function () {
+    app.nav = new app.NavView();
+  },
+
   entrance: function () {
     if (!app.currentUser) {
       $.get('/login').done( function (data) {
-        app.session = data;
-        if (data.user) {
-          app.currentUser = new app.User(data.user);
+        if (data) {
+          app.currentUser = new app.User(data);
           app.router.navigate('databases', {trigger: true});
         } else {
           delete app.currentUser;
@@ -23,7 +26,18 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   showLoginOrSignUP: function () {
+    app.nav.render('login');
     var makeCurrentUserView = new app.MakeCurrentUserView();
     makeCurrentUserView.render();
+  },
+
+  showDatabases: function () {
+    app.nav.render('databaseList');
+    if(app.currentUser){
+      var databaseListView = new app.DatabaseListView();
+      databaseListView.render();
+    } else {
+      this.entrance();
+    }
   }
 });
