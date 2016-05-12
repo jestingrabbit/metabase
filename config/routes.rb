@@ -23,6 +23,15 @@ Rails.application.routes.draw do
   get '/login' => 'session#show'
   delete '/login' => 'session#destroy'
 
+  resources :databases, :only => [:create, :update, :show, :destroy, :index] do
+    resources :tables, :only => [:create, :update, :show, :destroy, :index] do
+      resources :columns, :only => [:create, :update, :show, :destroy, :index]
+    end
+    resources :associations, :only => [:create, :update, :show, :destroy, :index]
+  end
+
+  get '/databases/:id/full' => 'databases#full'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

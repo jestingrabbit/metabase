@@ -11,32 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506031005) do
+ActiveRecord::Schema.define(version: 20160511072209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "column_descriptions", force: :cascade do |t|
+  create_table "associations", force: :cascade do |t|
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.boolean  "from_crow"
+    t.boolean  "to_crow"
+    t.integer  "from_x"
+    t.integer  "from_y"
+    t.integer  "from_dx"
+    t.integer  "from_dy"
+    t.integer  "to_x"
+    t.integer  "to_y"
+    t.integer  "to_dx"
+    t.integer  "to_dy"
+    t.string   "color"
+    t.integer  "database_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "associations", ["database_id"], name: "index_associations_on_database_id", using: :btree
+
+  create_table "columns", force: :cascade do |t|
     t.string   "name"
     t.string   "data_type"
+    t.integer  "rank"
+    t.string   "color"
     t.integer  "table_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "column_descriptions", ["table_id"], name: "index_column_descriptions_on_table_id", using: :btree
+  add_index "columns", ["table_id"], name: "index_columns_on_table_id", using: :btree
 
   create_table "databases", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "color_index"
   end
 
   add_index "databases", ["user_id"], name: "index_databases_on_user_id", using: :btree
 
   create_table "tables", force: :cascade do |t|
     t.string   "plural"
+    t.string   "singular"
+    t.string   "color"
+    t.integer  "top"
+    t.integer  "left"
     t.integer  "database_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -52,7 +80,8 @@ ActiveRecord::Schema.define(version: 20160506031005) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "column_descriptions", "tables"
+  add_foreign_key "associations", "databases"
+  add_foreign_key "columns", "tables"
   add_foreign_key "databases", "users"
   add_foreign_key "tables", "databases"
 end

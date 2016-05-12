@@ -12,10 +12,9 @@ app.MakeCurrentUserView = Backbone.View.extend({
   render: function () {
     app.view = this;
     this.$el.html($('#makeCurrentUserTemplate').text());
+    app.verticalCenterFront();
 
     var frontHeight = $('#front').height();
-    var windowHeight = $(window).height();
-    $('#front').css({'top': (windowHeight - frontHeight)/2});
     var loginHeight = $('#login').height();
     $('#login').css({'top': (frontHeight - loginHeight)/2});
     var orHeight = $('#or').height();

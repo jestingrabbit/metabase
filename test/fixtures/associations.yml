@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_id: 1
+  to_id: 1
+  from_x: 1
+  from_y: 1
+  from_dx: 1
+  from_dy: 1
+  to_x: 1
+  to_y: 1
+  to_dx: 1
+  to_dy: 1
+  color: MyString
+
+two:
+  from_id: 1
+  to_id: 1
+  from_x: 1
+  from_y: 1
+  from_dx: 1
+  from_dy: 1
+  to_x: 1
+  to_y: 1
+  to_dx: 1
+  to_dy: 1
+  color: MyString
