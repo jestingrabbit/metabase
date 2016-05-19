@@ -12,7 +12,7 @@ app.ControlsView = Backbone.View.extend({
   makeNewTable: function (e) {
     if (!$('button#newTable').hasClass('disabled')){
       this.$el.find('button#newTable').blur();
-      var newTable = new app.Table({plural: 'plural'}, {database: app.database});
+      var newTable = new app.Table(null, {database: app.database});
       app.database.tables.add(newTable);
       setTimeout( function () {
         $('button#newTable').removeClass('disabled');

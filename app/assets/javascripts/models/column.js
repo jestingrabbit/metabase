@@ -1,8 +1,8 @@
 var app = app || {};
 
-app.Table = Backbone.Model.extend({
+app.Column = Backbone.Model.extend({
   defaults: {
-    singular: "Column McColumn-face"
+    name: ""
     // columns
   },
 
@@ -11,8 +11,8 @@ app.Table = Backbone.Model.extend({
   },
 
   initialize: function (attributes, options) {
+    this.set(attributes);
     this.table = options.table;
     this.database = this.table.database;
-    this.set(attributes);
   }
 });

@@ -27,7 +27,7 @@ app.NewDataseFormView = Backbone.View.extend({
       app.database = new app.Database();
       app.database.set('name', this.$el.find('form fieldset input').val());
       app.database.save().done( function() {
-        app.router.navigate(app.database.get('name') + '/' + app.database.id);
+        app.router.navigate(app.database.get('name') + '/' + app.database.id, {trigger: true});
       });
     }
   }

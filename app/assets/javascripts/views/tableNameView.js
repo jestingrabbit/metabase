@@ -19,7 +19,7 @@ app.TableNameView = Backbone.View.extend({
         .html($('#tableNameEditingTemplate').text());
       var input = this.$el.find('input');
       this.$input = input;
-      if (this.model.plural) {
+      if (this.model.get('plural')) {
         this.$input.val(this.model.get('plural'));
       }
       setTimeout( function () {
@@ -55,11 +55,22 @@ app.TableNameView = Backbone.View.extend({
   },
 
   makeDraggableParent: function () {
-    this.model.view.$el.draggable();
+    this.model.view.$el.draggable({
+      containment: '#main'
+    });
+    this.model.draggable = true;
   },
 
   stopDraggable: function () {
-    this.model.view.$el.draggable('destroy');
+    if (this.model.draggable){
+      this.model.draggable = false;
+      this.model.set({
+        top: parseInt(this.model.view.$el.css('top')),
+        left: parseInt(this.model.view.$el.css('left'))
+      });
+      this.model.save();
+      this.model.view.$el.draggable('destroy');
+    }
   }
 
 });

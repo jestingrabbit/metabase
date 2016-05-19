@@ -12,6 +12,12 @@ app.AppRouter = Backbone.Router.extend({
     app.nav = new app.NavView();
   },
 
+  cleanSlate: function () {
+    $('body').find('.tableView').remove();
+    $('body').find('.bottom-left').remove();
+    $('body').find('.bottom-right').remove();
+  },
+
   entrance: function () {
     if (!app.currentUser) {
       $.get('/login').done( function (data) {
@@ -27,12 +33,14 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   showLoginOrSignUP: function () {
+    app.router.cleanSlate();
     app.nav.render('login');
     var makeCurrentUserView = new app.MakeCurrentUserView();
     makeCurrentUserView.render();
   },
 
   showDatabases: function () {
+    app.router.cleanSlate();
     app.nav.render('databaseList');
     if(app.currentUser){
       var databaseListView = new app.DatabaseListView();
@@ -43,6 +51,7 @@ app.AppRouter = Backbone.Router.extend({
   },
 
   showDatabase: function (dbName, id) {
+    app.router.cleanSlate();
     if (!app.currentUser) { // get the currentUser without changing nav if its there.
       $.get('/login').done( function (data) {
         if (data) {
@@ -52,6 +61,8 @@ app.AppRouter = Backbone.Router.extend({
           delete app.currentUser;
           app.router.navigate('loginOrSignUp', {trigger: true});
         }
+      }).fail( function () {
+        app.router.showDatabase(dbName, id);
       });
       return;
     }

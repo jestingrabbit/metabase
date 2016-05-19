@@ -2,7 +2,8 @@ var app = app || {};
 
 app.Table = Backbone.Model.extend({
   defaults: {
-    singular: "Table McTable-face"
+    singular: "Table McTable-face",
+    plural: ""
     // columns
   },
 

@@ -7,7 +7,6 @@
 
 </div>
 
-
 <!-- /////////////////////////////////////////////////////////////////////// -->
 
 <script type="text/template" id="navTemplate">
@@ -141,4 +140,28 @@
   <button class="save">
     <span class="glyphicon glyphicon-save"></span>
   </button>
+</script>
+
+<script type="text/template" id="tableControlsViewTemplate">
+  <div class="addColumn">
+    <span class="glyphicon glyphicon-plus"></span>
+  </div>
+</script>
+
+<script type="text/template" id="columnEditingTemplate">
+  <input type="text" class="name">
+  <select class="data_type">
+    <option disabled selected value> -- select a data type -- </option>
+    <option value="string">string</option>
+    <option value="text">text</option>
+    <option value="integer">integer</option>
+    <option value="float">float</option>
+    <option value="decimal">decimal</option>
+    <option value="boolean">boolean</option>
+    <option value="binary">binary</option>
+    <option value="date">date</option>
+    <option value="time">time</option>
+    <option value="datetime">datetime</option>
+    <option value="timestamp">timestamp</option>
+  </select>
 </script>

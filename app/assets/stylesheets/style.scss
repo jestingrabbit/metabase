@@ -272,6 +272,7 @@ div.controls button.btn-inline {
   border-style: solid;
   min-width: 200px;
   padding: 0.5em;
+  background: white;
 }
 
 .tableView input[type="text"] {
@@ -295,4 +296,8 @@ div.controls button.btn-inline {
 
 .tableView input:focus {
   outline-width: 0;
+}
+
+.tableView .tableControlsView {
+  text-align: center;
 }
