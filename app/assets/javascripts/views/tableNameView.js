@@ -42,8 +42,7 @@ app.TableNameView = Backbone.View.extend({
     var self = this;
     this.model.set('plural', this.$input.val());
     this.model.save().done( function () {
-      self.render()
-        .$el.removeClass('editing');
+      self.model.view.render();
     });
     this.render();
   },

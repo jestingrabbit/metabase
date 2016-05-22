@@ -5,8 +5,6 @@ app.DatabaseView = Backbone.View.extend({
   el: '#main',
 
   events: {
-    'click': 'hello'
-//    'click button#newTable': 'makeNewTable' doesn't work here pally, makes more sense is a subview anyway??
   },
 
   render: function (){
@@ -48,6 +46,7 @@ app.DatabaseView = Backbone.View.extend({
   },
 
   addTableView: function (table) {
+    app.table = table;
     table.view = new app.TableView({model: table});
     app.view.$el.append(table.view.render().$el);
   },
@@ -55,8 +54,8 @@ app.DatabaseView = Backbone.View.extend({
   colorSetup: function () {
     app.rainbow = new rainbow.Colors({fraction: 0.5});
     app.colors = [];
-    while (app.database.color_index > app.colors.length) {
-      app.color.push(app.rainbow.get());
+    while (app.database.get('color_index') > app.colors.length) {
+      app.colors.push(app.rainbow.get());
     }
   }
 });
