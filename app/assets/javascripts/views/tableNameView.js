@@ -54,21 +54,23 @@ app.TableNameView = Backbone.View.extend({
   },
 
   makeDraggableParent: function () {
-    this.model.view.$el.draggable({
-      containment: '#main'
-    });
-    this.model.draggable = true;
+    if(this.model.view.$el.draggable('instance')){
+      this.model.view.$el.draggable('enable');
+    } else {
+      this.model.view.$el.draggable({
+        containment: '#main'
+      });
+    }
   },
 
   stopDraggable: function () {
-    if (this.model.draggable){
-      this.model.draggable = false;
+    if (this.model.view.$el.draggable('instance')){
       this.model.set({
         top: parseInt(this.model.view.$el.css('top')),
         left: parseInt(this.model.view.$el.css('left'))
       });
       this.model.save();
-      this.model.view.$el.draggable('destroy');
+      this.model.view.$el.draggable('disable');
     }
   }
 

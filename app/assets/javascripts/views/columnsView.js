@@ -10,8 +10,16 @@ app.ColumnsView = Backbone.View.extend({
   },
 
   render: function (options) {
+
+    this.$el.empty();
+
     this.model.columns.each( function (column) { // probably want a column view in there.
-      console.log(column);
+      if(options && options.blurring && column.isNew()){
+        this.model.columns.remove(column);
+        column.destroy();
+      }
+      var columnView = new ColumnView({model: column});
+      this.$el.append(columnView.render().$el);
     });
 
     this.listenTo(this.model.columns, 'add', this.addEditingColumnView);

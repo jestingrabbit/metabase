@@ -24,9 +24,7 @@ app.TableView = Backbone.View.extend({
       app.colors.push(tableColor);
       this.model.set('color', tableColor);
       app.database.set('color_index', app.colors.length);
-      app.database.save().done( function () {
-        console.log(app.database);
-      });
+      app.database.save();
 
       var tableNameView = new app.TableNameView({model: this.model});
       this.$el.append(tableNameView.render({editing:true}).$el);
@@ -85,8 +83,5 @@ app.TableView = Backbone.View.extend({
       this.$el.css({'z-index': 0});
       this.render({blurring: true});
     }
-
   }
-
-
-})
+});

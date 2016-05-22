@@ -26,4 +26,4 @@ app.TableControlsView = Backbone.View.extend({
     this.model.columns.add(newColumn);
   }
 
-})
+});
