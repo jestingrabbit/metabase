@@ -22,5 +22,5 @@ class User < ActiveRecord::Base
   }
 
   has_secure_password
-  has_many :databases
+  has_many :databases, :dependent => :destroy
 end

@@ -10,7 +10,6 @@ class TablesController < ApplicationController
   def create
     @table = Table.new table_params
     @table.database_id = @database.id
-    normalize
     if @table.save
       render :json => @table
     else
@@ -20,7 +19,6 @@ class TablesController < ApplicationController
 
   def update
     @table.update table_params
-    normalize
     unless @table.errors.any?
       @table.save
       render :json => @table
@@ -67,13 +65,6 @@ class TablesController < ApplicationController
   def check_ownership_of_database
     unless @current_user && @database && @database.user_id == @current_user.id
       render :json => {}, :status => :unprocessable_entity
-    end
-  end
-
-  def normalize
-    if @table.present?
-      @table.plural =  @table.plural.strip.pluralize #fingers crossed
-      @table.singular = @table.plural.pluralize(1)
     end
   end
 

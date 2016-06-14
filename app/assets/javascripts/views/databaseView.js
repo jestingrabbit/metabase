@@ -26,9 +26,7 @@ app.DatabaseView = Backbone.View.extend({
 
     app.controlsView = new app.ControlsView(); // listens to buttons once they're made
 
-    app.mainHeight = this.$el.height();
-    app.mainWidth = this.$el.width();
-
+    this.getWindowDimensions();
     this.colorSetup();
 
     this.listenTo(app.database.tables, 'add', this.addTableView);
@@ -45,14 +43,19 @@ app.DatabaseView = Backbone.View.extend({
     });
   },
 
+  getWindowDimensions: function() {
+    app.mainHeight = this.$el.height();
+    app.mainWidth = this.$el.width();
+  },
+
   addTableView: function (table) {
-    app.table = table;
     table.view = new app.TableView({model: table});
     app.view.$el.append(table.view.render().$el);
+    table.view.focusHere();
   },
 
   colorSetup: function () {
-    app.rainbow = new rainbow.Colors({fraction: 0.5});
+    app.rainbow = new rainbow.Colors({fraction: 1/3});
     app.colors = [];
     while (app.database.get('color_index') > app.colors.length) {
       app.colors.push(app.rainbow.get());

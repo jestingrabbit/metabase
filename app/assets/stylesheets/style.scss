@@ -271,27 +271,43 @@ div.controls button.btn-inline {
   position: absolute;
   border-style: solid;
   min-width: 200px;
-  padding: 0.5em;
   background: white;
 }
 
 .tableView input[type="text"] {
+  background-color: rgba(255, 255, 255, 0);
   border-width: 0;
 }
 
 .tableView .tableNameView {
   text-align: center;
   font-size: 120%;
+  // font-weight:lighter;
   position: relative;
-  background: white;
 }
 
 .tableView div.tableNameView:not(.editing):hover {
   cursor: move;
 }
 
-.tableView .tableNameView button {
-  background: white;
+.tableView button {
+  border: none;
+  background: rgba(0,0,0,0);
+}
+
+.tableView .tableNameView ::-webkit-input-placeholder {
+  color: white;
+  font-weight: lighter;
+}
+
+.tableView .tableNameView :-ms-placeholder {
+  color: white;
+  font-weight: lighter;
+}
+
+.tableView .tableNameView ::-ms-input-placeholder {
+  color: white;
+  font-weight: lighter;
 }
 
 .tableView input:focus {
@@ -300,4 +316,25 @@ div.controls button.btn-inline {
 
 .tableView .tableControlsView {
   text-align: center;
+}
+
+.columnView {
+  color: black;
+  background-color: white;
+  // font-size: 1rem;
+  margin: 0 1px;
+}
+
+.columnView div {
+  padding: 0;
+}
+
+.columnView .colName {
+  display: inline-block;
+  padding: 0 1rem;
+}
+
+.columnView .colDataType {
+  display: inline-block;
+  padding: 0 1rem;
 }

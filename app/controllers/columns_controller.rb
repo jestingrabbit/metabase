@@ -67,4 +67,5 @@ class ColumnsController < ApplicationController
       render :json => {}, :status => :unprocessable_entity
     end
   end
+
 end

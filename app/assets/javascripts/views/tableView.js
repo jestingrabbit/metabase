@@ -28,6 +28,7 @@ app.TableView = Backbone.View.extend({
 
       var tableNameView = new app.TableNameView({model: this.model});
       this.$el.append(tableNameView.render({editing:true}).$el);
+      app.view.getWindowDimensions();
 
       setTimeout( function () {
         var top = (app.mainHeight - self.$el.height())/2;
@@ -60,7 +61,8 @@ app.TableView = Backbone.View.extend({
     }
 
     this.$el.css({
-      'color': this.model.get('color'),
+      'color': 'white',
+      'background-color': this.model.get('color'),
       'border-color': this.model.get('color')
     })
 

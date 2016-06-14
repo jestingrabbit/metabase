@@ -13,6 +13,18 @@
 #
 
 class Table < ActiveRecord::Base
+
+  validates :plural, :format => { :with => /[a-zA-Z]/,
+    message: "gimme at least one letter" }
+
+  after_validation :normalize
+
   belongs_to :database
-  has_many :columns
+  has_many :columns, :dependent => :destroy
+
+  def normalize
+    self.plural = self.plural.strip.gsub(/\s+/, "_").gsub(/\W/, '').gsub(/\d*/, '').downcase.pluralize #fingers crossed
+    self.singular = self.plural.pluralize(1)
+  end
+
 end

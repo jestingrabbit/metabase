@@ -9,7 +9,8 @@ app.TableNameView = Backbone.View.extend({
     'click button.save' : 'saveName',
     'keypress input' : 'saveOnEnter',
     'mouseenter' : 'makeDraggableParent',
-    'mouseleave' : 'stopDraggable'
+    'mouseleave' : 'stopDraggable',
+    'hover' : 'hoverEventer'
   },
 
   render: function (options) {
@@ -28,13 +29,11 @@ app.TableNameView = Backbone.View.extend({
       this.$el.find('button').css({
         'border': "1px solid "+ this.model.get('color'),
         'border-radius': "3px"
-      })
-
+      });
     } else {
       this.$el.empty();
       this.$el.text(this.model.get('plural'));
     }
-
     return this;
   },
 
@@ -44,7 +43,6 @@ app.TableNameView = Backbone.View.extend({
     this.model.save().done( function () {
       self.model.view.render();
     });
-    this.render();
   },
 
   saveOnEnter: function( e ) {
@@ -72,6 +70,10 @@ app.TableNameView = Backbone.View.extend({
       this.model.save();
       this.model.view.$el.draggable('disable');
     }
+  },
+
+  hoverEventer: function () {
+    console.log("yeah")
   }
 
 });

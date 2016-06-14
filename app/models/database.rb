@@ -11,5 +11,6 @@
 
 class Database < ActiveRecord::Base
   belongs_to :user
-  has_many :tables
+  has_many :tables, :dependent => :destroy
+  has_many :associations, :dependent => :destroy
 end
